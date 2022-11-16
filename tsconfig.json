@@ -12,6 +12,11 @@
     "declaration": true,
     "outDir": "dist"
   },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "include": [
     "src/**/*.ts"
   ],

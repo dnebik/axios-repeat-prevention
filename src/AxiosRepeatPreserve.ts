@@ -1,17 +1,17 @@
-import axios from "axios";
 import type {
   AxiosAdapter,
   AxiosPromise,
   AxiosRequestConfig,
   Method,
-} from "axios";
+} from 'axios';
+import axios from 'axios';
 
 interface AxiosRepeatPreserveOptions {
   methods?: Method[];
 }
 
 const defaults: AxiosRepeatPreserveOptions = {
-  methods: ["GET"],
+  methods: ['GET'],
 };
 
 export default class {
@@ -31,12 +31,13 @@ export default class {
 
   public adapter(
     config: AxiosRequestConfig,
-    next: AxiosAdapter = axios.defaults.adapter!
+    next: AxiosAdapter = axios.defaults.adapter!,
   ) {
     if (!this.upperMethods.includes(config.method.toUpperCase()))
       return next(config);
 
-    const storeKey = config.url + JSON.stringify(config.params);
+    const storeKey =
+      config.url + JSON.stringify(config.params) + JSON.stringify(config.data);
     const storeValue = this.store[storeKey];
     if (storeValue) return storeValue;
 
