@@ -1,2 +1,2 @@
-import AxiosRepeatPreserve from "./AxiosRepeatPreserve";
+import AxiosRepeatPreserve from './AxiosRepeatPreserve';
 export default AxiosRepeatPreserve;

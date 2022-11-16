@@ -1,18 +1,18 @@
-import AxiosRepeatPreserve from "../src";
-import MockAdapter from "axios-mock-adapter";
-import axios from "axios";
+import MockAdapter from 'axios-mock-adapter';
+import AxiosRepeatPreserve from '../src';
+import axios from 'axios';
 
 const delay = 20;
 
 const instance = axios.create();
 
 const preserveAdapter = new AxiosRepeatPreserve({
-  methods: ["GET"],
+  methods: ['GET'],
 });
 const mockAdapter = new MockAdapter(instance, { delayResponse: delay });
 
 // Make mock response
-mockAdapter.onGet("/get").reply(() => {
+mockAdapter.onGet('/get').reply(() => {
   return [200, { random: Math.random() }];
 });
 
@@ -21,13 +21,13 @@ instance.defaults.adapter = (config) =>
   preserveAdapter.adapter(config, mockAdapter.adapter());
 
 // execute requests
-const first = instance.get("/get");
-const second = instance.get("/get");
+const first = instance.get('/get');
+const second = instance.get('/get');
 
 // execute after other requests
 const third = (async () => {
   await new Promise((resolve) => setTimeout(() => resolve(true), delay + 1));
-  return instance.get("/get");
+  return instance.get('/get');
 })();
 
 // await all responses
