@@ -36,7 +36,8 @@ export default class {
     if (!this.upperMethods.includes(config.method.toUpperCase()))
       return next(config);
 
-    const storeKey = config.url + JSON.stringify(config.params);
+    const storeKey =
+      config.url + JSON.stringify(config.params) + JSON.stringify(config.data);
     const storeValue = this.store[storeKey];
     if (storeValue) return storeValue;
 
