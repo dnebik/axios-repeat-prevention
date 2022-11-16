@@ -5,7 +5,7 @@ Prevent requests if the same request was launched, and it was not completed.
 ## Install
 
 ```sh
-npm install --save axios-cache-adapter
+npm install --save axios-repeat-prevention
 ```
 
 ## Usage
